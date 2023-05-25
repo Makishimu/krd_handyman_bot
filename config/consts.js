@@ -20,10 +20,10 @@ const pictureListMap = {
 };
 
 const priceFilesListMap = {
-    plumber: resolve(__dirname, '../documents/plumber_price_list.pdf'),
-    appliances_repair: resolve(__dirname, '../documents/appliances_repair_price_list.pdf'),
-    finishing_works: resolve(__dirname, '../documents/finishing_works_price_list.pdf'),
-    construction: resolve(__dirname, '../documents/construction_price_list.pdf'),
+    plumber: 'https://disk.yandex.ru/i/40MTqqg9LUb7Jw',
+    appliances_repair:  'https://disk.yandex.ru/i/40MTqqg9LUb7Jw',
+    finishing_works: 'https://disk.yandex.ru/i/40MTqqg9LUb7Jw',
+    construction:  'https://disk.yandex.ru/i/40MTqqg9LUb7Jw',
 
 };
 
