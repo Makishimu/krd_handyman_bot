@@ -1,0 +1,10 @@
+#modules
+/node_modules
+
+#secret key etc.
+/config
+.env
+
+#idea
+.idea
+
