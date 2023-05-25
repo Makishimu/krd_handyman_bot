@@ -3,7 +3,8 @@ import {
     priceList,
     firstStepAnswerTitlesMap,
     firstStepPicturesMap,
-    firstStepFilesMap
+    firstStepFilesMap,
+    otherTextAnswer
 } from '../config/consts.js';
 import { Markup } from 'telegraf';
 
@@ -12,6 +13,8 @@ const start = async ctx => {
         if (ctx.message) {
             await ctx.replyWithHTML(
                 `Добрый день, рады Вас видеть ${ctx.message?.from?.first_name || 'в нашем боте'}!\n\n` +
+                'Наши мастера оказывают одни из самых качественных услуг в городе Краснодаре, ' +
+                'предлагаю ознакомиться по подробнее с видами проводимых ими работ и предоставляемых услуг!\n\n' +
                 '<b>Выберите подходящий вид услуг:</b>\n<i>Все цены указаны в рублях</i>',
                 Markup.inlineKeyboard(priceList.map(item => {
                     return [Markup.button.callback(item.title, item.id)]
@@ -27,8 +30,8 @@ const start = async ctx => {
         }
 
     } catch (error) {
-        await console.log('`При выполнении операции /start озникла ошибка -', error);
-        await ctx.reply(`При выполнении операции /start озникла ошибка - ${error.message}`)
+        await console.log('`При выполнении операции /start возникла ошибка -', error);
+        await ctx.reply(`При выполнении операции /start возникла ошибка - ${error.message}`)
     }
 
 };
@@ -39,10 +42,13 @@ const help = async ctx => {
 const appliances_repair_command = async ctx => {
     try {
         await ctx.answerCbQuery();
-        await ctx.replyWithHTML(`<b>${firstStepAnswerTitlesMap['appliances_repair']}</b>`);
-        await ctx.replyWithPhoto({ source: firstStepPicturesMap['appliances_repair']});
-        await ctx.replyWithHTML(`<a href="${firstStepFilesMap['appliances_repair']}" >Ссылка на скачивание прайса</a>`);
-        await ctx.replyWithHTML('Вы можете вернуться и скачать информацию о других работах:',
+        await ctx.replyWithPhoto(
+            { source: firstStepPicturesMap['appliances_repair']},
+            { caption: firstStepAnswerTitlesMap['appliances_repair']}
+        );
+        await ctx.replyWithHTML(
+            `<a href="${firstStepFilesMap['appliances_repair']}" >Ссылка на скачивание прайса</a>\n\n` +
+            'Вы можете вернуться и скачать информацию о других работах:',
             Markup.inlineKeyboard([Markup.button.callback('Назад', 'btn_back')])
         );
     } catch (error) {
@@ -53,10 +59,13 @@ const appliances_repair_command = async ctx => {
 const plumber_command = async ctx => {
     try {
         await ctx.answerCbQuery();
-        await ctx.replyWithHTML(`<b>${firstStepAnswerTitlesMap['plumber']}</b>`);
-        await ctx.replyWithPhoto({ source: firstStepPicturesMap['plumber']});
-        await ctx.replyWithHTML(`<a href="${firstStepFilesMap['plumber']}" >Ссылка на скачивание прайса</a>`);
-        await ctx.replyWithHTML('Вы можете вернуться и скачать информацию о других работах:',
+        await ctx.replyWithPhoto(
+            { source: firstStepPicturesMap['plumber']},
+            { caption: firstStepAnswerTitlesMap['plumber']}
+        );
+        await ctx.replyWithHTML(
+            `<a href="${firstStepFilesMap['plumber']}" >Ссылка на скачивание прайса</a>\n\n` +
+            'Вы можете вернуться и скачать информацию о других работах:',
             Markup.inlineKeyboard([Markup.button.callback('Назад', 'btn_back')])
         );
     } catch (error) {
@@ -66,10 +75,13 @@ const plumber_command = async ctx => {
 const finishing_works_command = async ctx => {
     try {
         await ctx.answerCbQuery();
-        await ctx.replyWithHTML(`<b>${firstStepAnswerTitlesMap['finishing_works']}</b>`);
-        await ctx.replyWithPhoto({ source: (firstStepPicturesMap['finishing_works'])});
-        await ctx.replyWithHTML(`<a href="${firstStepFilesMap['finishing_works']}" >Ссылка на скачивание прайса</a>`);
-        await ctx.replyWithHTML('Вы можете вернуться и скачать информацию о других работах:',
+        await ctx.replyWithPhoto(
+            { source: firstStepPicturesMap['finishing_works']},
+            { caption: firstStepAnswerTitlesMap['finishing_works']}
+        );
+        await ctx.replyWithHTML(
+            `<a href="${firstStepFilesMap['finishing_works']}" >Ссылка на скачивание прайса</a>\n\n` +
+            'Вы можете вернуться и скачать информацию о других работах:',
             Markup.inlineKeyboard([Markup.button.callback('Назад', 'btn_back')])
         );
     } catch (error) {
@@ -79,10 +91,13 @@ const finishing_works_command = async ctx => {
 const construction_command = async ctx => {
     try {
         await ctx.answerCbQuery();
-        await ctx.replyWithHTML(`<b>${firstStepAnswerTitlesMap['construction']}</b>`);
-        await ctx.replyWithPhoto({ source: firstStepPicturesMap['construction']});
-        await ctx.replyWithHTML(`<a href="${firstStepFilesMap['construction']}" >Ссылка на скачивание прайса</a>`);
-        await ctx.replyWithHTML('Вы можете вернуться и скачать информацию о других работах:',
+        await ctx.replyWithPhoto(
+            { source: firstStepPicturesMap['construction']},
+            { caption: firstStepAnswerTitlesMap['construction']}
+        );
+        await ctx.replyWithHTML(
+            `<a href="${firstStepFilesMap['construction']}" >Ссылка на скачивание прайса</a>\n\n` +
+            'Вы можете вернуться и скачать информацию о других работах:',
             Markup.inlineKeyboard([Markup.button.callback('Назад', 'btn_back')])
         );
     } catch (error) {
@@ -95,7 +110,7 @@ const send_contacts_command = async ctx => {
             `<b>Павел</b>\nТелефон: <a href="tel:+7(999)999-99-99">+7(999)999-99-99</a>\n
             \n<b>Виталий</b>\nТелефон: <a href="tel:+7(999)999-99-99">+7(999)999-99-99</a>`
         );
-        await ctx.replyWithHTML('Добавьте наши контакты к себе в записную книгу :',
+        await ctx.replyWithHTML('Добавьте наши контакты к себе в записную книгу:',
             Markup.inlineKeyboard([Markup.button.callback('Получить контакты', 'btn_get_contacts')])
         );
         await ctx.replyWithHTML('К списку работ:',
@@ -107,7 +122,9 @@ const send_contacts_command = async ctx => {
 };
 const add_contacts_command = async ctx => {
     try {
-        await ctx.answerCbQuery();
+        if (ctx && !ctx.message) {
+            await ctx.answerCbQuery();
+        }
         await ctx.sendContact('+7(999)999-99-99', 'Павел');
         await ctx.sendContact('+7(999)999-99-99', 'Виталий');
     } catch (error) {
@@ -117,7 +134,7 @@ const add_contacts_command = async ctx => {
 
 const not_understand_command = async ctx => {
     try {
-        await ctx.reply('Я не понимаю текст, пожалуйста используйте команды.');
+        await ctx.replyWithHTML(otherTextAnswer);
     } catch (error) {
         console.error('Hearing Error - ', error.message);
     }
