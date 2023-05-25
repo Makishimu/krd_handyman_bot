@@ -55,6 +55,17 @@ const priceListArrayLight = [
     }
 ];
 
+const differentActionsButtons = {
+    sendContacts: {
+        id: '5_send_contacts',
+        title: 'Контакты'
+    },
+    addContacts: {
+        id: '6_add_contacts',
+        title: 'Сохранить контакты'
+    }
+};
+
 const sendContactsTriggerWorldsList = [
     'Контакты',
     'контакты',
@@ -109,6 +120,7 @@ export {
     pictureListMap as firstStepPicturesMap,
     priceFilesListMap as firstStepFilesMap,
     priceAnswerTitleListMap as firstStepAnswerTitlesMap,
+    differentActionsButtons,
     sendContactsTriggerWorldsList,
     addContactsTriggerWorldsList,
     helpTriggerWorldsList,

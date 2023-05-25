@@ -20,7 +20,8 @@ import {
     sendContactsTriggerWorldsList,
     addContactsTriggerWorldsList,
     helpTriggerWorldsList,
-    pricesListTriggerWorldsList
+    pricesListTriggerWorldsList,
+    differentActionsButtons
 } from './config/consts.js';
 
 
@@ -39,6 +40,23 @@ const setupBot = ()=> {
            console.log('btn_back ERROR - ', error.message);
        }
     });
+    bot.action(differentActionsButtons.sendContacts.id,  async ctx => {
+        try {
+            await ctx.answerCbQuery();
+            await send_contacts_command(ctx);
+        } catch (error) {
+            console.log(`${differentActionsButtons.sendContacts.id} ERROR - `, error.message);
+        }
+    });
+    bot.action(differentActionsButtons.addContacts.id,  async ctx => {
+        try {
+            await ctx.answerCbQuery();
+            await add_contacts_command(ctx);
+        } catch (error) {
+            console.log(`${differentActionsButtons.addContacts.id} ERROR - `, error.message);
+        }
+    });
+
     bot.command('contacts',  send_contacts_command);
     bot.command('save_contacts',  add_contacts_command);
     bot.command('list',  start);
