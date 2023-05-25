@@ -8,7 +8,3 @@ import { setupBot } from './bot.js';
         console.log('Starting ERROR - ', error);
     }
 }());
-
-// Enable graceful stop
-process.once('SIGINT', () => bot.stop('SIGINT'));
-process.once('SIGTERM', () => bot.stop('SIGTERM'));
