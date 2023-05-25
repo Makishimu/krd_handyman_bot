@@ -6,13 +6,12 @@ import {
     firstStepFilesMap,
     differentActionsButtons,
     otherTextAnswer,
-    priceFilesListMap
 } from '../config/consts.js';
 import { Markup } from 'telegraf';
 
 const start = async ctx => {
     try {
-        console.log('priceFilesListMap - ', priceFilesListMap['plumber']);
+        console.log('priceFilesListMap - ', firstStepFilesMap['plumber']);
         if (ctx.message) {
             await ctx.replyWithHTML(
                 `Добрый день, рады Вас видеть ${ctx.message?.from?.first_name || 'в нашем боте'}!\n\n` +
