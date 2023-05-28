@@ -14,7 +14,9 @@ const start = async ctx => {
         if (ctx.message) {
             await ctx.replyWithHTML(
                 `Добрый день, рады Вас видеть ${ctx.message?.from?.first_name || 'в нашем боте'}!\n\n` +
-                'Наши мастера оказывают одни из самых качественных услуг в городе Краснодаре, ' +
+                '<b>Для работы с ботом, воспользутесь командами из меню:</b>' +
+                helpText +
+                '\n\nНаши мастера оказывают одни из самых качественных услуг в городе Краснодаре, ' +
                 'предлагаю ознакомиться по подробнее с видами проводимых ими работ и предоставляемых услуг!\n\n' +
                 '<b>Выберите подходящий вид услуг:</b>\n<i>Все цены указаны в рублях</i>',
                 Markup.inlineKeyboard(priceList.map(item => {
@@ -30,7 +32,7 @@ const start = async ctx => {
                     )]])
             );
             await ctx.replyWithHTML(
-                '<b>Сохранить контакты наших мастеров:</b>\n\n',
+                '<b>Сохранить контакты наших мастеров в пару кликов:</b>\n\n',
                 Markup.inlineKeyboard([[
                     Markup.button.callback(
                         differentActionsButtons.addContacts.title,
@@ -124,8 +126,8 @@ const construction_command = async ctx => {
 const send_contacts_command = async (ctx, hideAddContacts) => {
     try {
         await ctx.replyWithHTML(
-            `<b>Павел</b>\nТелефон: <a href="tel:+7(999)999-99-99">+7(999)999-99-99</a>\n
-            \n<b>Виталий</b>\nТелефон: <a href="tel:+7(999)999-99-99">+7(999)999-99-99</a>`
+            `<b>Мастер ремонта Павел</b>\nТелефон: <a href="tel:+7(999)999-99-99">+7(999)999-99-99</a>\n
+            \n<b>Мастер ремонта Виталий</b>\nТелефон: <a href="tel:+7(999)999-99-99">+7(999)999-99-99</a>`
         );
         if (!hideAddContacts) {
             await ctx.replyWithHTML('Добавьте наши контакты к себе в записную книгу:',
@@ -136,7 +138,7 @@ const send_contacts_command = async (ctx, hideAddContacts) => {
                     )])
             );
         }
-        await ctx.replyWithHTML('К списку работ:',
+        await ctx.replyWithHTML('Вернуться к списку стоимости услуг:',
             Markup.inlineKeyboard([Markup.button.callback('Назад', 'btn_back')])
         );
     } catch (error) {
