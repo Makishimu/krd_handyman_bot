@@ -2,11 +2,11 @@ import { Telegraf } from 'telegraf' ;
 import dotenv from 'dotenv';
 dotenv.config();
 
-
 // Подключение функций комманд
 import {
     start,
     help,
+    servicesList,
     appliances_repair_command,
     plumber_command,
     finishing_works_command,
@@ -24,18 +24,16 @@ import {
     differentActionsButtons
 } from './config/consts.js';
 
-
-export const bot = new Telegraf(process.env.BOT_TOKEN);
+const bot = new Telegraf(process.env.BOT_TOKEN);
 
 const setupBot = ()=> {
     bot.start(start);
     bot.help(help);
 
-    // Обработка команд для отгрузки pdf документов
     bot.action('btn_back',  async ctx => {
        try {
            await ctx.answerCbQuery();
-           await start(ctx);
+           await servicesList(ctx);
        } catch (error) {
            console.log('btn_back ERROR - ', error.message);
        }
@@ -59,7 +57,7 @@ const setupBot = ()=> {
 
     bot.command('contacts',  send_contacts_command);
     bot.command('save_contacts',  add_contacts_command);
-    bot.command('list',  start);
+    bot.command('list',  servicesList);
     bot.action('1_appliances_repair', appliances_repair_command);
     bot.action('2_plumber', plumber_command);
     bot.action('3_finishing_works', finishing_works_command);
@@ -70,7 +68,7 @@ const setupBot = ()=> {
     bot.hears(sendContactsTriggerWorldsList, send_contacts_command);
     bot.hears(addContactsTriggerWorldsList, add_contacts_command);
     bot.hears(helpTriggerWorldsList, help);
-    bot.hears(pricesListTriggerWorldsList, start);
+    bot.hears(pricesListTriggerWorldsList, servicesList);
     bot.on('message', not_understand_command);
 
     return bot;

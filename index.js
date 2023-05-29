@@ -1,4 +1,4 @@
-import { bot, setupBot } from './bot.js';
+import { setupBot } from './bot.js';
 
 (async function () {
     try {
