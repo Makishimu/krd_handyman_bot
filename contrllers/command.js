@@ -75,7 +75,7 @@ const createReplyFunction = (type) => {
                 }
             );
         } catch (error) {
-            console.error('Error while 1_appliances_repair processing - ', error.message);
+            console.error(`Error while ${type} processing - `, error.message);
         }
     }
 };
