@@ -6,7 +6,7 @@ import { bot, setupBot } from './bot.js';
             await setupBot().launch();
             console.log('Starting in DEV mode!');
         } else {
-            bot
+            setupBot()
                 .launch({ webhook: { domain: process.env.WEBHOOK_DOMAIN, port: process.env.PORT } })
                 .then(() => console.log(
                     "Starting in PROD mode! Webhook bot listening on port", process.env.PORT
