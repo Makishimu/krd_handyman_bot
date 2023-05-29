@@ -25,7 +25,7 @@ import {
 } from './config/consts.js';
 
 
-const bot = new Telegraf(process.env.BOT_TOKEN);
+export const bot = new Telegraf(process.env.BOT_TOKEN);
 
 const setupBot = ()=> {
     bot.start(start);
