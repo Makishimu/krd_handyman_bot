@@ -24,7 +24,7 @@ const start = async ctx => {
             }))
         );
         await ctx.replyWithHTML(
-            '<b>Так же вы сожете посмотреть список котнактов наших мастеров:</b>\n\n',
+            '<b>Так же Вы можете посмотреть список котнактов наших мастеров:</b>\n\n',
             Markup.inlineKeyboard([[
                 Markup.button.callback(
                     differentActionsButtons.sendContacts.title,
