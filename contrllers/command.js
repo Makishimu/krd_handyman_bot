@@ -59,79 +59,31 @@ const servicesList =  async ctx => {
     );
 }
 
-const appliances_repair_command = async ctx => {
-    try {
-        await ctx.answerCbQuery();
-        await ctx.replyWithPhoto(
-            { source: firstStepPicturesMap['appliances_repair']},
-            { caption: fmt
-                    `${bold`${firstStepAnswerTitlesMap['appliances_repair']}.`}
+const createReplyFunction = (type) => {
+    return async ctx => {
+        try {
+            await ctx.answerCbQuery();
+            await ctx.replyWithPhoto(
+                { source: firstStepPicturesMap[type]},
+                { caption: fmt
+                        `${bold`${firstStepAnswerTitlesMap[type]}.`}
             \n${link(
-                        '🔗📋Скачайте его, нажав на этот текст👈',
-                        `${firstStepFilesMap['appliances_repair']}`
-                    )}\n\nДля получения других ссылок, восползуйтесь командой  /list
+                            '🔗📋Скачайте его, нажав на этот текст👈',
+                            `${firstStepFilesMap[type]}`
+                        )}\n\nДля получения других ссылок, восползуйтесь командой  /list
             `
-            }
-        );
-    } catch (error) {
-        console.error('Error while 1_appliances_repair processing - ', error.message);
+                }
+            );
+        } catch (error) {
+            console.error('Error while 1_appliances_repair processing - ', error.message);
+        }
     }
 };
 
-const plumber_command = async ctx => {
-    try {
-        await ctx.answerCbQuery();
-        await ctx.replyWithPhoto(
-            { source: firstStepPicturesMap['plumber']},
-            { caption: fmt
-                    `${bold`${firstStepAnswerTitlesMap['plumber']}.`}
-            \n${link(
-                        '🔗📋Скачайте его, нажав на этот текст👈',
-                        `${firstStepFilesMap['plumber']}`
-                    )}\n\nДля получения других ссылок, восползуйтесь командой  /list
-            `
-            }
-        );
-    } catch (error) {
-        console.error('Error while 2_plumber processing - ', error.message);
-    }
-};
-const finishing_works_command = async ctx => {
-    try {
-        await ctx.answerCbQuery();
-        await ctx.replyWithPhoto(
-            { source: firstStepPicturesMap['finishing_works']},
-            { caption: fmt
-                    `${bold`${firstStepAnswerTitlesMap['finishing_works']}.`}
-            \n${link(
-                        '🔗📋Скачайте его, нажав на этот текст👈',
-                        `${firstStepFilesMap['finishing_works']}`
-                    )}\n\nДля получения других ссылок, восползуйтесь командой  /list
-            `
-            }
-        );
-    } catch (error) {
-        console.error('Error while 3_finishing_works processing - ', error.message);
-    }
-};
-const construction_command = async ctx => {
-    try {
-        await ctx.answerCbQuery();
-        await ctx.replyWithPhoto(
-            { source: firstStepPicturesMap['construction']},
-            { caption: fmt
-            `${bold`${firstStepAnswerTitlesMap['construction']}.`}
-            \n${link(
-                '🔗📋Скачайте его, нажав на этот текст👈', 
-                `${firstStepFilesMap['construction']}`
-            )}\n\nДля получения других ссылок, восползуйтесь командой  /list
-            `
-            }
-        );
-    } catch (error) {
-        console.error('Error while 4_construction processing - ', error.message);
-    }
-};
+const appliances_repair_command = createReplyFunction('appliances_repair');
+const plumber_command = createReplyFunction('plumber');
+const finishing_works_command = createReplyFunction('finishing_works');
+const construction_command = createReplyFunction('construction');
 const send_contacts_command = async (ctx, hideAddContacts) => {
     try {
         await ctx.replyWithHTML(
