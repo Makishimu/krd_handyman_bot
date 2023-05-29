@@ -17,5 +17,3 @@ import { bot, setupBot } from './bot.js';
         console.log('Starting ERROR - ', error);
     }
 }());
-
-// https://api.telegram.org/bot$6165044417:AAFWWNvBaVpe5WuAlIZghDwiyruwZhYb7Xk/setWebhook?url=$https://ruby-coyote-veil.cyclic.app
