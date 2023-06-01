@@ -1,11 +1,12 @@
 import {
-    helpText,
-    priceList,
-    firstStepAnswerTitlesMap,
-    firstStepPicturesMap,
-    firstStepFilesMap,
-    differentActionsButtons,
-    otherTextAnswer,
+    BOT_COMMANDS_TEXT,
+    PRICE_LIST,
+    PRICE_ANSWER_TITLE_LIST_MAP,
+    FIRST_STEP_PICTURES_MAP,
+    PRICE_FILES_LIST_MAP,
+    DIFFERENT_ACTIONS_BUTTONS,
+    OTHER_TEXT_ANSWER,
+    MASTERS_ARRAY,
 } from '../config/consts.js';
 import { Markup } from 'telegraf';
 import { fmt, link, bold } from "telegraf/format";
@@ -15,11 +16,11 @@ const start = async ctx => {
         await ctx.replyWithHTML(
             `Добрый день, рады Вас видеть ${ctx.message?.from?.first_name || 'в нашем боте'}!\n\n` +
             '<b>Для работы с ботом, воспользутесь командами из меню:</b>' +
-            helpText +
+            BOT_COMMANDS_TEXT +
             '\n\nНаши мастера оказывают одни из самых качественных услуг в городе Краснодаре, ' +
             'предлагаю ознакомиться по подробнее с видами проводимых ими работ и предоставляемых услуг!\n\n' +
             '<b>Выберите подходящий вид услуг:</b>',
-            Markup.inlineKeyboard(priceList.map(item => {
+            Markup.inlineKeyboard(PRICE_LIST.map(item => {
                 return [Markup.button.callback(item.title, item.id)]
             }))
         );
@@ -27,16 +28,16 @@ const start = async ctx => {
             '<b>Так же Вы можете посмотреть список котнактов наших мастеров:</b>\n\n',
             Markup.inlineKeyboard([[
                 Markup.button.callback(
-                    differentActionsButtons.sendContacts.title,
-                    differentActionsButtons.sendContacts.id
+                    DIFFERENT_ACTIONS_BUTTONS.sendContacts.title,
+                    DIFFERENT_ACTIONS_BUTTONS.sendContacts.id
                 )]])
         );
         await ctx.replyWithHTML(
             '<b>Сохранить контакты наших мастеров в пару кликов:</b>\n\n',
             Markup.inlineKeyboard([[
                 Markup.button.callback(
-                    differentActionsButtons.addContacts.title,
-                    differentActionsButtons.addContacts.id
+                    DIFFERENT_ACTIONS_BUTTONS.addContacts.title,
+                    DIFFERENT_ACTIONS_BUTTONS.addContacts.id
                 )]])
         );
 
@@ -47,13 +48,13 @@ const start = async ctx => {
 
 };
 const help = async ctx => {
-    await ctx.reply(helpText);
+    await ctx.reply(BOT_COMMANDS_TEXT);
 };
 
 const servicesList =  async ctx => {
     await ctx.replyWithHTML(
         '<b>Выберите подходящий вид услуг:</b>',
-        Markup.inlineKeyboard(priceList.map(item => {
+        Markup.inlineKeyboard(PRICE_LIST.map(item => {
             return [Markup.button.callback(item.title, item.id)]
         }))
     );
@@ -64,13 +65,13 @@ const createReplyFunction = (type) => {
         try {
             await ctx.answerCbQuery();
             await ctx.replyWithPhoto(
-                { source: firstStepPicturesMap[type]},
+                { source: FIRST_STEP_PICTURES_MAP[type]},
                 { caption: fmt
-                        `${bold`${firstStepAnswerTitlesMap[type]}.`}
+                        `${bold`${PRICE_ANSWER_TITLE_LIST_MAP[type]}.`}
             \n${link(
                             '🔗📋Скачайте его, нажав на этот текст👈',
-                            `${firstStepFilesMap[type]}`
-                        )}\n\nДля получения других ссылок, восползуйтесь командой  /list
+                            `${PRICE_FILES_LIST_MAP[type]}`
+                        )}\n\nДля получения других ссылок, воспользуйтесь командой  /list
             `
                 }
             );
@@ -87,8 +88,12 @@ const construction_command = createReplyFunction('construction');
 const send_contacts_command = async (ctx, hideAddContacts) => {
     try {
         await ctx.replyWithHTML(
-            `<b>Мастер ремонта Павел</b>\nТелефон: <a href="tel:+7(999)999-99-99">+7(999)999-99-99</a>\n
-            \n<b>Мастер ремонта Виталий</b>\nТелефон: <a href="tel:+7(999)999-99-99">+7(999)999-99-99</a>`
+            `${
+                MASTERS_ARRAY.map(
+                    master => {
+                        return (`<b>${master.name}</b>\nТелефон: <a href="tel:${master.phone}">${master.phone}</a>\n\n`)}
+                ).join('')
+            }`
         );
         if (!hideAddContacts) {
             await ctx.replyWithHTML('Добавьте наши контакты к себе в записную книгу:',
@@ -111,8 +116,12 @@ const add_contacts_command = async ctx => {
         if (ctx && !ctx.message) {
             await ctx.answerCbQuery();
         }
-        await ctx.sendContact('+7(999)999-99-99', 'Мастер ремонта Павел');
-        await ctx.sendContact('+7(999)999-99-99', 'Мастер ремонта Виталий');
+        MASTERS_ARRAY.map(
+            async master => {
+                await ctx.replyWithContact(`${master.phone}`, `${master.name}`);
+            }
+        );
+
     } catch (error) {
         await ctx.reply(
             'Вы слишком часто запрашивали контакты наших мастеров и телеграм перестал их отправлять' +
@@ -125,7 +134,7 @@ const add_contacts_command = async ctx => {
 
 const not_understand_command = async ctx => {
     try {
-        await ctx.replyWithHTML(otherTextAnswer);
+        await ctx.replyWithHTML(OTHER_TEXT_ANSWER);
     } catch (error) {
         console.error('Hearing Error - ', error.message);
     }
