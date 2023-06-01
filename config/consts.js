@@ -8,6 +8,7 @@ const BOT_COMMANDS_TEXT = `
 /list - Список услуг и работ
 /contacts - Список контактов
 /save_contacts - Получить контакты для сохранения в телефон
+/send_request - Задать вопрос мастеру
 /help - Список команд
 `;
 
