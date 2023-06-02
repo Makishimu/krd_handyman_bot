@@ -14,7 +14,7 @@ import {
     send_contacts_command,
     add_contacts_command,
     not_understand_command
-} from './contrllers/command.js';
+} from './contrllers/commands.js';
 
 // Подключение констант
 import {
