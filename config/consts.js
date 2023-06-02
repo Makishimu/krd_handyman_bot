@@ -114,16 +114,16 @@ const SEND_QUESTION_TRIGGER_WORDS_LIST = [
 
 const OTHER_TEXT_ANSWER =
     'Что-что? Не понял. Видимо, это не совсем тот текст, что я ожидаю получить от Вас.\n\n' +
-    '<b>Я понимаю только этот текст, для отравки списка контактов:</b>\n\n' +
-    `<i>${SEND_CONTACTS_TRIGGER_WORDS_LIST.join(', ')}</i>.\n\n\n` +
-    '<b>Я понимаю только этот текст, для сохранения контактов в телефон:</b>\n\n' +
-    `<i>${ADD_CONTACTS_TRIGGER_WORDS_LIST.join(', ')}</i>.\n\n\n` +
-    '<b>Я понимаю только этот текст, для получения списка команд:</b>\n\n' +
-    `<i>${HELP_TRIGGER_WORDS_LIST.join(', ')}</i>.\n\n\n` +
-    '<b>Я понимаю только этот текст, для получения списка работ:</b>\n\n' +
-    `<i>${PRICES_LIST_TRIGGER_WORDS_LIST.join(', ')}</i>.\n\n\n` +
-    '<b>Я понимаю только этот текст, чтобы задать вопрос мастеру:</b>\n\n' +
-    `<i>${SEND_QUESTION_TRIGGER_WORDS_LIST.join(', ')}</i>.\n\n\n` +
+    '<b>Я понимаю только этот текст, для отравки списка контактов:</b>\n' +
+    `<i>${SEND_CONTACTS_TRIGGER_WORDS_LIST.join(', ')}</i>.\n\n` +
+    '<b>Я понимаю только этот текст, для сохранения контактов в телефон:</b>\n' +
+    `<i>${ADD_CONTACTS_TRIGGER_WORDS_LIST.join(', ')}</i>.\n\n` +
+    '<b>Я понимаю только этот текст, для получения списка команд:</b>\n' +
+    `<i>${HELP_TRIGGER_WORDS_LIST.join(', ')}</i>.\n\n` +
+    '<b>Я понимаю только этот текст, для получения списка работ:</b>\n' +
+    `<i>${PRICES_LIST_TRIGGER_WORDS_LIST.join(', ')}</i>.\n\n` +
+    '<b>Я понимаю только этот текст, чтобы задать вопрос мастеру:</b>\n' +
+    `<i>${SEND_QUESTION_TRIGGER_WORDS_LIST.join(', ')}</i>.\n\n` +
     '<b>А так же, команды:</b>\n' +
     BOT_COMMANDS_TEXT;
 
