@@ -102,6 +102,16 @@ const PRICES_LIST_TRIGGER_WORDS_LIST = [
     'услуги'
 ];
 
+const SEND_QUESTION_TRIGGER_WORDS_LIST = [
+    'Обратная связь',
+    'обратная связь',
+    'Написать мастеру',
+    'написать мастеру',
+    'Задать вопрос',
+    'задать вопрос',
+    'услуги'
+];
+
 const OTHER_TEXT_ANSWER =
     'Что-что? Не понял. Видимо, это не совсем тот текст, что я ожидаю получить от Вас.\n\n' +
     '<b>Я понимаю только этот текст, для отравки списка контактов:</b>\n\n' +
@@ -112,6 +122,8 @@ const OTHER_TEXT_ANSWER =
     `<i>${HELP_TRIGGER_WORDS_LIST.join(', ')}</i>.\n\n\n` +
     '<b>Я понимаю только этот текст, для получения списка работ:</b>\n\n' +
     `<i>${PRICES_LIST_TRIGGER_WORDS_LIST.join(', ')}</i>.\n\n\n` +
+    '<b>Я понимаю только этот текст, чтобы задать вопрос мастеру:</b>\n\n' +
+    `<i>${SEND_QUESTION_TRIGGER_WORDS_LIST.join(', ')}</i>.\n\n\n` +
     '<b>А так же, команды:</b>\n' +
     BOT_COMMANDS_TEXT;
 
@@ -139,6 +151,7 @@ export {
     ADD_CONTACTS_TRIGGER_WORDS_LIST,
     HELP_TRIGGER_WORDS_LIST,
     PRICES_LIST_TRIGGER_WORDS_LIST,
+    SEND_QUESTION_TRIGGER_WORDS_LIST,
     OTHER_TEXT_ANSWER,
     MASTERS_ARRAY
 }
