@@ -67,7 +67,7 @@ const createReplyFunction = (type) => {
             await ctx.replyWithPhoto(
                 { source: FIRST_STEP_PICTURES_MAP[type]},
                 { caption: fmt
-                        `${bold`${PRICE_ANSWER_TITLE_LIST_MAP[type]}.`}
+                        `${bold`${PRICE_ANSWER_TITLE_LIST_MAP[type]}`}
             \n${link(
                             '🔗📋Скачайте его, нажав на этот текст👈',
                             `${PRICE_FILES_LIST_MAP[type]}`
